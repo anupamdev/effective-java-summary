@@ -450,9 +450,27 @@ Common names:
 - The compiler uses type inference to eliminate boilerplate
 - Omit the types of all lambda parameters unless their presence makes your program clearer
 - Unlike methods and classes, lambdas lack names and documentation; if a computation isn't self-explanatory, or exceeds a few lines, don't put it in a lambda
+- For generics, type information may be needed because compiler obtains most of the type information to perform type inference from generics.
 - For lambdas, one line is ideal, and 3 lines is a reasonable max
 - Constant-specific class bodies:
-  - Use if enum type has constant-specific behavior that is 1) difficult to understand, 2) can't be implemented in a few lines, or 3) requires access to instance fields or methods
+  - Use if enum type has constant-specific behavior that is 1) difficult to understand, 2) can't be implemented in a few lines, or 3) requires access to instance fields or methods. For example:
+  ```java
+  public enum Operation{
+		PLUS ("+", (x,y)-> x + y);
+    ...
+    private final String symbol;
+    private final DoubleBinaryOperator op;
+    Operation(String symbol, DoubleBinaryOperator op){
+      this.symbol = symbol;
+      this.op = op;
+    }
+
+    public double apply(double x, double y)
+    {
+      return op.applyAsDouble(x,y);
+    }
+	}
+  ```
 - Uses for anonymous classes:
   - Create instance of abstract class
   - Create instances of interfaces with multiple abstract methods
