@@ -1,27 +1,39 @@
 # effective-java-notes
-A collection of the major points made in the book Effective Java by Joshua Bloch (Third Edition). 
+
+A collection of the major points made in the book Effective Java by Joshua Bloch (Third Edition).
 
 Disclaimer: All content is taken from the book and should credited to Joshua Bloch and the references he lists in the book.
 
-
 # Table of Contents
-#### [2. Creating and Destroying Objects](https://github.com/earlejam/effective-java-notes/blob/master/README.md#2-creating-and-destroying-objects-1)
-#### [3. Methods Common to All Objects](https://github.com/earlejam/effective-java-notes/blob/master/README.md#3-methods-common-to-all-objects-1)
-#### [4. Classes and Interfaces](https://github.com/earlejam/effective-java-notes/blob/master/README.md#4-classes-and-interfaces-1)
-#### [5. Generics](https://github.com/earlejam/effective-java-notes/blob/master/README.md#5-generics-1)
-#### [6. Enums and Annotations](https://github.com/earlejam/effective-java-notes/blob/master/README.md#6-enums-and-annotations-1)
-#### [7. Lambdas and Streams](https://github.com/earlejam/effective-java-notes/blob/master/README.md#7-lambdas-and-streams-1)
-#### [8. Methods](https://github.com/earlejam/effective-java-notes/blob/master/README.md#8-methods-1)
-#### [9. General Programming](https://github.com/earlejam/effective-java-notes/blob/master/README.md#9-general-programming-1)
-#### [10. Exceptions](https://github.com/earlejam/effective-java-notes/blob/master/README.md#10-exceptions-1)
-#### [11. Concurrency](https://github.com/earlejam/effective-java-notes/blob/master/README.md#11-concurrency-1)
-#### [12. Serialization](https://github.com/earlejam/effective-java-notes/blob/master/README.md#12-serialization-1)
+
+#### [2. Creating and Destroying Objects](#2-creating-and-destroying-objects-1)
+
+#### [3. Methods Common to All Objects](#3-methods-common-to-all-objects-1)
+
+#### [4. Classes and Interfaces](#4-classes-and-interfaces-1)
+
+#### [5. Generics](#5-generics-1)
+
+#### [6. Enums and Annotations](#6-enums-and-annotations-1)
+
+#### [7. Lambdas and Streams](#7-lambdas-and-streams-1)
+
+#### [8. Methods](#8-methods-1)
+
+#### [9. General Programming](#9-general-programming-1)
+
+#### [10. Exceptions](#10-exceptions-1)
+
+#### [11. Concurrency](#11-concurrency-1)
+
+#### [12. Serialization](#12-serialization-1)
 
 # 2. Creating and Destroying Objects
 
 #### 1. Consider static factory methods
 
 Pros:
+
 - Named, unlike constructors
 - Not required to return a _new_ object, which allows for instance controlling
 - Can return an object of any subtype of their return type
@@ -29,10 +41,12 @@ Pros:
 - Class of returned object need not exist when the class containing the method is written, which is the basis of _Service Provider Frameworks_
 
 Cons:
+
 - No public/protected constructor means no subclassing
 - Hard for programmers to find
 
 Common names:
+
 - `from()` - type conversion
 - `of()` - aggregation
 - `valueOf()` - more verbose
@@ -101,7 +115,6 @@ Common names:
 
 - Code shorter and cleaner, and better exceptions provided to programmer
 
-
 # 3. Methods Common to All Objects
 
 #### 10. Obey the general contract when overriding `equals`
@@ -159,7 +172,6 @@ Common names:
 - Use of `<` and `>` in `compareTo` methods is verbose, error-prone, and not recommended
 - Start with the most significant fields
 - Do not use difference-based comparators
-
 
 # 4. Classes and Interfaces
 
@@ -275,7 +287,6 @@ Common names:
 - Can change behavior based on the order files are passed to the compiler (!)
 - Never put multiple top-level classes or interfaces in a single source file
 
-
 # 5. Generics
 
 #### 26. Don't use raw types
@@ -295,20 +306,20 @@ Common names:
   }
   ```
 - Generic Terms:
-  
-  | Term | Example |
-  | ------| ------- |
-  | Parameterized Type | `List<String>` |
-  | Actual Type Parameter | `String` |
-  | Generic Type | `List<E>` |
-  | Format Type Parameter | `E` |
-  | Unbounded Wildcard Type | `List<?>` |
-  | Raw Type | `List` |
-  | Bounded Type Parameter | `<E extends Number>` |
-  | Recursive Type Bound | `<T extends Comparable<T>>` |
-  | Bounded Wildcard Type | `List<? extends Number>` |
-  | Generic Method | `static <E> List<E> asList(E[] a)` |
-  | Type Token | `String.class` |
+
+  | Term                    | Example                            |
+  | ----------------------- | ---------------------------------- |
+  | Parameterized Type      | `List<String>`                     |
+  | Actual Type Parameter   | `String`                           |
+  | Generic Type            | `List<E>`                          |
+  | Format Type Parameter   | `E`                                |
+  | Unbounded Wildcard Type | `List<?>`                          |
+  | Raw Type                | `List`                             |
+  | Bounded Type Parameter  | `<E extends Number>`               |
+  | Recursive Type Bound    | `<T extends Comparable<T>>`        |
+  | Bounded Wildcard Type   | `List<? extends Number>`           |
+  | Generic Method          | `static <E> List<E> asList(E[] a)` |
+  | Type Token              | `String.class`                     |
 
 #### 27. Eliminate unchecked warnings
 
@@ -378,7 +389,6 @@ Common names:
 - Recall "Favorites" example with a `String`, an `int`, and a `class`.
 - Also possible to use a _bounded type token_ using a bounded type parameter or bounded wildcard
 
-
 # 6. Enums and Annotations
 
 #### 34. Use enums instead of `int` constants
@@ -441,7 +451,6 @@ Common names:
     - If so, use a marker interface
 - If you find yourself writing a marker annotation type whose target is ElementType TYPE, take the time to figure out whether it really should be an annotation type or marker interface
 
-
 # 7. Lambdas and Streams
 
 #### 42. Prefer lambdas to anonymous classes
@@ -453,10 +462,12 @@ Common names:
 - For generics, type information may be needed because compiler obtains most of the type information to perform type inference from generics.
 - For lambdas, one line is ideal, and 3 lines is a reasonable max
 - Constant-specific class bodies:
+
   - Use if enum type has constant-specific behavior that is 1) difficult to understand, 2) can't be implemented in a few lines, or 3) requires access to instance fields or methods. For example:
+
   ```java
   public enum Operation{
-		PLUS ("+", (x,y)-> x + y);
+  	PLUS ("+", (x,y)-> x + y);
     ...
     private final String symbol;
     private final DoubleBinaryOperator op;
@@ -469,8 +480,9 @@ Common names:
     {
       return op.applyAsDouble(x,y);
     }
-	}
+  }
   ```
+
 - Uses for anonymous classes:
   - Create instance of abstract class
   - Create instances of interfaces with multiple abstract methods
@@ -488,13 +500,14 @@ Common names:
   - Consider them especially with large class names or if method lies within same class as lambda
 - Method references vs lambdas:
 
-| Method Reference Type | Example | Lambda Equivalent |
-| --- | --- | --- |
-| Static | `Integer::parseInt` | `str -> Integer.parseInt(str)` |
-| Bound | `Instant.now()::isAfter` | `Instant then = Instant.now(); t -> then.isAfter(t);` |
-| Unbound | `String::toLowerCase` | `str -> str.toLowerCase()` |
-| Class constructor | `TreeMap<K,V>::new` | `() -> new TreeMap<K,V>` |
-| Array constructor | `int[]::new` | `len -> new int[len]` |
+| Method Reference Type | Example                  | Lambda Equivalent                                     |
+| --------------------- | ------------------------ | ----------------------------------------------------- |
+| Static                | `Integer::parseInt`      | `str -> Integer.parseInt(str)`                        |
+| Bound                 | `Instant.now()::isAfter` | `Instant then = Instant.now(); t -> then.isAfter(t);` |
+| Unbound               | `String::toLowerCase`    | `str -> str.toLowerCase()`                            |
+| Class constructor     | `TreeMap<K,V>::new`      | `() -> new TreeMap<K,V>`                              |
+| Array constructor     | `int[]::new`             | `len -> new int[len]`                                 |
+
 - Where method references are shorter and clearer, use them; where they aren't, stick with lambdas
 
 #### 44. Favor the use of standard functional interfaces
@@ -509,19 +522,20 @@ Common names:
   5. `Consumer`: function that takes an argument but returns nothing
 - 6 basic functional interfaces:
 
-| Interface | Function Signature | Example |
-| --- | --- | --- |
-| `UnaryOperator<T>` | `T apply(T t)` | `String::toLowerCase` |
-| `BinaryOperator<T>` | `T apply(T t1, T t2)` | `BigInteger::add` |
-| `Predicate<T>` | `boolean test(T t)` | `Collection::isEmpty` |
-| `Function<T, R>` | `R apply(T t)` | `Arrays::asList` |
-| `Supplier<T>` | `T get()` | `Instant::now` |
-| `Consumer<T>` | `void accept(T t)` | `System.out::println` |
+| Interface           | Function Signature    | Example               |
+| ------------------- | --------------------- | --------------------- |
+| `UnaryOperator<T>`  | `T apply(T t)`        | `String::toLowerCase` |
+| `BinaryOperator<T>` | `T apply(T t1, T t2)` | `BigInteger::add`     |
+| `Predicate<T>`      | `boolean test(T t)`   | `Collection::isEmpty` |
+| `Function<T, R>`    | `R apply(T t)`        | `Arrays::asList`      |
+| `Supplier<T>`       | `T get()`             | `Instant::now`        |
+| `Consumer<T>`       | `void accept(T t)`    | `System.out::println` |
+
 - Don't be tempted to use basic functional interfaces with boxes primitives instead of primitive functional interfaces
 - Seriously consider writing a purpose-built functional interface if you need one that shares one of the following with `Comparator`:
-   - It will be commonly used and could benefit from a descriptive name
-   - It has a strong contract associated with it
-   - It would benefit from custom default methods
+  - It will be commonly used and could benefit from a descriptive name
+  - It has a strong contract associated with it
+  - It would benefit from custom default methods
 - Always annotate your functional interfaces with the `@FunctionalInterface` annotation
   - Tells readers that the interface was designed to enable lambdas
   - Keeps you honest because interface won't compile unless it has exactly one abstract method
@@ -554,8 +568,7 @@ Common names:
 - _groupingBy_: returns collectors to produce maps that group elements into categories based on a classifier function
 - _downstream collector_: produces a value from a stream containing all the elements in a category
 - There is never a reason to say `collect(counting())`
-- _minBy/maxBy_: take a comparator and return the minimum or maximum element in the stream (determined by `Comparator`)
--_joining_: joins streams of character sequences (e.g. strings)
+- _minBy/maxBy_: take a comparator and return the minimum or maximum element in the stream (determined by `Comparator`) -_joining_: joins streams of character sequences (e.g. strings)
 - most important ones: `toList`, `toSet`, `toMap`, `groupingBy`, `joining`
 
 #### 47. Prefer `Collection` to `Stream` as a return type
@@ -576,7 +589,6 @@ Common names:
   - The best candidates for parallelism are reductions and short-circuiting operations
 - Not only can parallelizing a stream lead to poor performance, including liveness failures; it can lead to incorrect results and unpredictable behavior (safety failures)
 - Under the right circumstances, it _is_ possible to achieve near-linear speedup in the number of processor cores simply by adding a `parallel` call to a stream pipeline
-
 
 # 8. Methods
 
@@ -609,9 +621,9 @@ Common names:
 - Long sequences of identically typed parameters are especially harmful
   - Will compile and run with swapped parameters
   - How to shorten:
-    1) Break method into multiple methods
-    2) Create helper classes to hold groups of parameters
-    3) Adapt the builder pattern from object construction to method invocation
+    1. Break method into multiple methods
+    2. Create helper classes to hold groups of parameters
+    3. Adapt the builder pattern from object construction to method invocation
 - For parameter types, favor interfaces over classes
 - Prefer two-element enum types to boolean parameters, unless the meaning of the boolean is clear from the _method name_
 
@@ -665,7 +677,6 @@ Common names:
 - When documenting an annotation type, be sure to document any members and the type itself
 - Whether or not a class or static method is thread-safe, you should document its thread safety
 - Read the web pages generated by the Javadoc Utility to ensure they look correct and are readable
-
 
 # 9. General Programming
 
@@ -777,17 +788,17 @@ Common names:
 
 - Naming Conventions:
 
-  | Identifier Type | Examples |
-  | --- | --- |
-  | Package or module | `org.junit.jupiter.api`, `com.google.common.collect` |
+  | Identifier Type    | Examples                                              |
+  | ------------------ | ----------------------------------------------------- |
+  | Package or module  | `org.junit.jupiter.api`, `com.google.common.collect`  |
   | Class or Interface | `Stream`, `FutureTask`, `LinkedHashMap`, `HttpClient` |
-  | Method or Field | `remove`, `groupingBy`, `getCrc` |
-  | Constant Field | `MIN_VALUE`, `NEGATIVE_INFINITY` |
-  | Local Variable | `i`, `denom`, `houseNum` |
-  | Type Parameter | `T`, `E`, `K`, `V`, `X`, `R`, `U`, `V`, `T1`, `T2` |
+  | Method or Field    | `remove`, `groupingBy`, `getCrc`                      |
+  | Constant Field     | `MIN_VALUE`, `NEGATIVE_INFINITY`                      |
+  | Local Variable     | `i`, `denom`, `houseNum`                              |
+  | Type Parameter     | `T`, `E`, `K`, `V`, `X`, `R`, `U`, `V`, `T1`, `T2`    |
+
 - Grammatical naming conventions are more flexible and more controversial than typographical conventions
 - Refer to the JLS for more examples
-
 
 # 10. Exceptions
 
@@ -818,20 +829,21 @@ Common names:
 
 - The Java libraries provide a set of exceptions that covers most APIs
 - Benefits of reusing standard exceptions:
-  1) Makes API easier to learn because it matches established conventions
-  2) Programs using your API are easier to read because they're not cluttered with unfamiliar exceptions
-  3) Smaller memory footprint
+  1. Makes API easier to learn because it matches established conventions
+  2. Programs using your API are easier to read because they're not cluttered with unfamiliar exceptions
+  3. Smaller memory footprint
 - Do _not_ reuse `Exception`, `RuntimeException`, `Throwable`, or `Error` directly
 - Common Exceptions Use Cases:
 
-  | Exception | Occasion for use |
-  | --- | --- |
-  | `IllegalArgumentException` | Non-null parameter value is inappropriate |
-  | `IllegalStateException` | Object state is inappropriate for method invocation |
-  | `NullPointerException` | Parameter value is `null` where prohibited |
-  | `IndexOutOfBoundsException` | Index parameter value is out of range |
+  | Exception                         | Occasion for use                                                        |
+  | --------------------------------- | ----------------------------------------------------------------------- |
+  | `IllegalArgumentException`        | Non-null parameter value is inappropriate                               |
+  | `IllegalStateException`           | Object state is inappropriate for method invocation                     |
+  | `NullPointerException`            | Parameter value is `null` where prohibited                              |
+  | `IndexOutOfBoundsException`       | Index parameter value is out of range                                   |
   | `ConcurrentModificationException` | Concurrent modification of an object has been detected where prohibited |
-  | `UnsupportedOperationException` | Object does not support method |
+  | `UnsupportedOperationException`   | Object does not support method                                          |
+
 - Throw `IllegalStateException` if no argument values would have worked, otherwise throw `IllegalArgumentException`
 
 #### 73. Throw exceptions appropriate to the abstraction
@@ -957,7 +969,6 @@ Common names:
 - `Thread.yield` has no testable semantics
 - Thread priorities are among the least portable features of Java, and should only be used to tweak performance on a system, not to "fix" a program that has liveness issues
 
-
 # 12. Serialization
 
 #### 85. Prefer alternatives to Java serialization
@@ -1038,4 +1049,3 @@ Common names:
   1. It is not compatible with classes that are extendable by their users
   2. It is not compatible with some classes whose object graphs contain circularities
 - The added power and safety of the serialization proxy pattern are not free (~14% more expensive)
-
