@@ -296,9 +296,9 @@ Common names:
 - If you use raw types, you lose all the safety and expressiveness benefits of generics
 - You lose type safety if you use a raw type like `List`, but not if you use a parameterized type list `List<Object>`
 - Instead of raw types, use _unbounded wildcard types_ if you want to use a generic type but you don't know or care what the actual type parameter is; so for a `Set<E>`, use `Set<?>`
-- You can put _any_ element (other than `null`) into a `Collection<?>`; you also can't assume anything about the type of objects you get out. If you care about type, try generic methods or _bounded_ wildcard types
-- You must use raw types in class literals
-- Also illegal to use `instanceof` operator on parameterized types since generic type info is erased as runtime
+- You can't put _any_ element (other than `null`) into a `Collection<?>`; you also can't assume anything about the type of objects you get out. If you care about type, try generic methods or _bounded_ wildcard types
+- You must use raw types in class literals e.g `List.class`. `List<String.class>` and `List<?>.class` are invalid.
+- Also illegal to use `instanceof` operator on parameterized types since generic type info is erased as runtime. The use of unbounded wild card types in place of _raw types_ does not affect the behaviour of the `instanceof` operator in anyway
 - This is the preferred way to use the instanceof operator with generic types:
   ```
   if (o instanceof Set) {
